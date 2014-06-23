@@ -50,7 +50,6 @@ public class DefaultViewBinder<T> implements ViewBinder<T> {
 		Picasso.with(mContext).cancelRequest(iv);
 		if (obj instanceof Integer) {
 			Picasso.with(mContext).load((Integer) obj).into(iv);
-			;
 		} else {
 			Uri uri = convertUri(obj);
 			Picasso.with(mContext).load(uri).into(iv);
