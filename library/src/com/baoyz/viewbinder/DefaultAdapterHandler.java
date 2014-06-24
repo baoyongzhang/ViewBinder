@@ -13,17 +13,17 @@ import android.view.View;
  * @date 2014年6月24日上午2:03:09
  * @param <T>
  */
-public class DefaultViewHandler<T> implements ViewHandler<T> {
+public class DefaultAdapterHandler<T> extends AdapterHandler<T> {
 
 	private Map<View, Map<String, View>> mHolderMap;
 	private ViewFinder mViewFinder;
 	private ViewBinder<T> mViewBinder;
 
-	public DefaultViewHandler(Context context) {
+	public DefaultAdapterHandler(Context context) {
 		mHolderMap = new HashMap<View, Map<String, View>>();
 
-		mViewFinder = new DefaultViewFinder();
-		mViewBinder = new DefaultViewBinder<T>(context);
+		mViewFinder = ViewFinder.getDefault(context);
+		mViewBinder = ViewBinder.getDefault(context);
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import android.view.View;
  * @author baoyz
  * @date 2014年6月24日上午2:03:36
  */
-public class DefaultViewFinder implements ViewFinder {
+public class DefaultViewFinder extends ViewFinder {
 
 	@Override
 	public View findView(Field field, View view) {

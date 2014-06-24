@@ -18,12 +18,12 @@ public abstract class BaseListAdapter<T> extends BaseAdapter {
 
 	private List<T> mList;
 	private Context mContext;
-	private ViewHandler<T> mViewHandler;
+	private AdapterHandler<T> mAdapterHandler;
 
 	public BaseListAdapter(Context context, List<T> list) {
 		mList = list;
 		mContext = context;
-		mViewHandler = new DefaultViewHandler<T>(mContext);
+		mAdapterHandler = AdapterHandler.getDefault(context);
 	}
 
 	@Override
@@ -46,9 +46,9 @@ public abstract class BaseListAdapter<T> extends BaseAdapter {
 		T bean = getItem(position);
 		if (view == null) {
 			view = View.inflate(mContext, getViewId(), null);
-			mViewHandler.createViewHolder(bean, view);
+			mAdapterHandler.createViewHolder(bean, view);
 		}
-		mViewHandler.bindView(view, bean);
+		mAdapterHandler.bindView(view, bean);
 		return view;
 	}
 

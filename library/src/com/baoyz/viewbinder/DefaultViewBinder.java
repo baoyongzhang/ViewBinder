@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
  * @date 2014年6月24日上午2:03:50
  * @param <T>
  */
-public class DefaultViewBinder<T> implements ViewBinder<T> {
+public class DefaultViewBinder<T> extends ViewBinder<T> {
 
 	private Context mContext;
 
@@ -28,6 +28,9 @@ public class DefaultViewBinder<T> implements ViewBinder<T> {
 
 	@Override
 	public void setViewValue(View view, Field field, Object bean) {
+		if (view == null || field == null || bean == null) {
+			return;
+		}
 		try {
 			field.setAccessible(true);
 			if (view instanceof CheckBox) {
@@ -67,6 +70,18 @@ public class DefaultViewBinder<T> implements ViewBinder<T> {
 			return Uri.parse(obj.toString());
 		}
 		return null;
+	}
+
+	@Override
+	public void bindView(View view, T bean) {
+		if (view == null || bean == null) {
+			return;
+		}
+		ViewFinder viewFinder = ViewFinder.getDefault(mContext);
+		Field[] fields = bean.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			setViewValue(viewFinder.findView(field, view), field, bean);
+		}
 	}
 
 }

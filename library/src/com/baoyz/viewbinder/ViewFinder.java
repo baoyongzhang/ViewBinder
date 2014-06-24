@@ -2,6 +2,7 @@ package com.baoyz.viewbinder;
 
 import java.lang.reflect.Field;
 
+import android.content.Context;
 import android.view.View;
 
 /**
@@ -9,7 +10,20 @@ import android.view.View;
  * @author baoyz
  * @date 2014年6月24日上午2:04:09
  */
-public interface ViewFinder {
+public abstract class ViewFinder {
 
-	public View findView(Field field, View view);
+	private static ViewFinder instance;
+
+	public abstract View findView(Field field, View view);
+
+	public static ViewFinder getDefault(Context context) {
+		if (instance == null) {
+			synchronized (ViewFinder.class) {
+				if (instance == null) {
+					instance = new DefaultViewFinder();
+				}
+			}
+		}
+		return instance;
+	}
 }

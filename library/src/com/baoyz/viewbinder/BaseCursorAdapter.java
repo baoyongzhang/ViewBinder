@@ -19,7 +19,7 @@ public abstract class BaseCursorAdapter<T extends ICursorBean> extends
 	private Context mContext;
 	private Class<T> mBeanClass;
 	private T mBean;
-	private ViewHandler<T> mViewHandler;
+	private AdapterHandler<T> mAdapterHandler;
 
 	public BaseCursorAdapter(Context context, Class<T> beanClass) {
 		this(context, null, beanClass);
@@ -36,13 +36,13 @@ public abstract class BaseCursorAdapter<T extends ICursorBean> extends
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		mViewHandler = new DefaultViewHandler<T>(mContext);
+		mAdapterHandler = AdapterHandler.getDefault(context);
 	}
 
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
 		View view = View.inflate(mContext, getViewId(), null);
-		mViewHandler.createViewHolder(mBean, view);
+		mAdapterHandler.createViewHolder(mBean, view);
 		return view;
 	}
 
@@ -51,7 +51,7 @@ public abstract class BaseCursorAdapter<T extends ICursorBean> extends
 		try {
 			T bean = mBeanClass.newInstance();
 			bean.loadFromCursor(cursor);
-			mViewHandler.bindView(view, bean);
+			mAdapterHandler.bindView(view, bean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
