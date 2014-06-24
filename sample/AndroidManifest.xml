@@ -29,6 +29,8 @@
         </activity>
         <activity android:name="com.baoyz.viewbinder.sample.ContactActivity" >
         </activity>
+        <activity android:name="com.baoyz.viewbinder.sample.SimpleDetailActivity" >
+        </activity>
     </application>
 
 </manifest>
