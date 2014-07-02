@@ -1,16 +1,13 @@
-package com.baoyz.viewbinder;
+package com.baoyz.viewbinder.setter;
 
 import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
-@Target({FIELD, METHOD})
-public @interface BindView {
-
+@Target(FIELD)
+public @interface BindSelected {
 	int value();
-	int defaultImageId() default -1;
 }

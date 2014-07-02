@@ -7,7 +7,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
 import com.baoyz.viewbinder.BindView;
-import com.baoyz.viewbinder.ICursorBean;
+import com.baoyz.viewbinder.adapter.ICursorBean;
 
 public class ContactBean implements ICursorBean {
 

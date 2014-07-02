@@ -4,6 +4,8 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.baoyz.viewbinder.adapter.AdapterHandler;
+
 import android.content.Context;
 import android.view.View;
 

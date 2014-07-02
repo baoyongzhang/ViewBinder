@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.widget.ListView;
 
-import com.baoyz.viewbinder.BaseCursorAdapter;
+import com.baoyz.viewbinder.adapter.BaseCursorAdapter;
 
 public class ContactActivity extends BaseLoadActivity {
 

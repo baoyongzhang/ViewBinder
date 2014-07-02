@@ -1,4 +1,5 @@
-package com.baoyz.viewbinder;
+package com.baoyz.viewbinder.adapter;
+
 
 import android.content.Context;
 import android.database.Cursor;

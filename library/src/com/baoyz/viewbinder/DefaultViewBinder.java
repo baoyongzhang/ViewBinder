@@ -78,10 +78,13 @@ public class DefaultViewBinder<T> extends ViewBinder<T> {
 			return;
 		}
 		ViewFinder viewFinder = ViewFinder.getDefault(mContext);
+		// field
 		Field[] fields = bean.getClass().getDeclaredFields();
 		for (Field field : fields) {
 			setViewValue(viewFinder.findView(field, view), field, bean);
 		}
+		// method
+		bean.getClass().getMethods();
 	}
 
 }

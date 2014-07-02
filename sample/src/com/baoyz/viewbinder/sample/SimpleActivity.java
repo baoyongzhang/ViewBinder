@@ -10,9 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.baoyz.viewbinder.BaseListAdapter;
+import com.baoyz.viewbinder.adapter.BaseListAdapter;
 
 public class SimpleActivity extends Activity {
 
@@ -50,6 +53,15 @@ public class SimpleActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		
+		ImageView iv = new ImageView(this);
+		
+		TextView tv = new TextView(this);
+		
+		CheckBox cb = new CheckBox(this);
+		
+		
+		
 	}
 
 }
