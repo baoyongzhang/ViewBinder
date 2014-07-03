@@ -14,6 +14,6 @@ import java.lang.annotation.Target;
  */
 @Retention(RUNTIME)
 @Target(FIELD)
-public @interface BindBackgroundResource {
+public @interface BindVisible {
 	int value();
 }
