@@ -2,7 +2,6 @@ package com.baoyz.viewbinder.adapter;
 
 import java.util.List;
 
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +14,22 @@ import android.widget.BaseAdapter;
  * 
  * @date 2014-6-5 ÏÂÎç12:28:16
  */
-public abstract class BaseListAdapter<T> extends BaseAdapter {
+public class SimpleListAdapter<T> extends BaseAdapter {
 
 	private List<T> mList;
 	private Context mContext;
 	private AdapterHandler<T> mAdapterHandler;
+	private int mViewId;
 
-	public BaseListAdapter(Context context, List<T> list) {
+	public SimpleListAdapter(Context context, List<T> list) {
+		this(context, list, 0);
+	}
+
+	public SimpleListAdapter(Context context, List<T> list, int viewId) {
 		mList = list;
 		mContext = context;
 		mAdapterHandler = AdapterHandler.getDefault(context);
+		mViewId = viewId;
 	}
 
 	@Override
@@ -53,6 +58,8 @@ public abstract class BaseListAdapter<T> extends BaseAdapter {
 		return view;
 	}
 
-	protected abstract int getViewId();
+	protected int getViewId() {
+		return mViewId;
+	};
 
 }

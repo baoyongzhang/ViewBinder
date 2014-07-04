@@ -17,7 +17,7 @@ public abstract class ViewBinder<T> {
 
 	private static ViewBinder instance;
 
-	public abstract void setViewValue(View view, Field field, T bean);
+	public abstract void setViewValue(BindInfo info, T bean);
 
 	public abstract void bindView(View view, T bean);
 

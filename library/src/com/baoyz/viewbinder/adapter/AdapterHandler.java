@@ -1,6 +1,5 @@
 package com.baoyz.viewbinder.adapter;
 
-import com.baoyz.viewbinder.DefaultAdapterHandler;
 
 import android.content.Context;
 import android.view.View;

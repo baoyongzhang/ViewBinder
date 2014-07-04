@@ -31,6 +31,8 @@
         </activity>
         <activity android:name="com.baoyz.viewbinder.sample.SimpleDetailActivity" >
         </activity>
+        <activity android:name="com.baoyz.viewbinder.sample.SetterSampleActivity" >
+        </activity>
     </application>
 
 </manifest>

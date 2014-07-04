@@ -10,11 +10,12 @@ import java.lang.annotation.Target;
 /**
  * 
  * @author baoyz
- * 
- * @createby 2014-7-3
+ * @date 2014-7-4
+ *
  */
 @Retention(RUNTIME)
 @Target({METHOD, FIELD})
 public @interface BindBackgroundColor {
 	int value();
+	String setter() default "setBackgroundColor";
 }

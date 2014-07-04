@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.baoyz.viewbinder.adapter.SimpleListAdapter;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +16,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.baoyz.viewbinder.adapter.BaseListAdapter;
 
 public class SimpleActivity extends Activity {
 
@@ -35,12 +35,8 @@ public class SimpleActivity extends Activity {
 		}
 
 		mListView = (ListView) findViewById(R.id.lv_list);
-		mListView.setAdapter(new BaseListAdapter<ListBean>(this, list) {
-			@Override
-			protected int getViewId() {
-				return R.layout.list_item;
-			}
-		});
+		mListView.setAdapter(new SimpleListAdapter<ListBean>(this, list,
+				R.layout.list_item));
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -53,15 +49,7 @@ public class SimpleActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-		
-		ImageView iv = new ImageView(this);
-		
-		TextView tv = new TextView(this);
-		
-		CheckBox cb = new CheckBox(this);
-		
-		
-		
+
 	}
 
 }

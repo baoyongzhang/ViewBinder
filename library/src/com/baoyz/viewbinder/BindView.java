@@ -13,4 +13,5 @@ public @interface BindView {
 
 	int value();
 	int defaultImageId() default -1;
+
 }

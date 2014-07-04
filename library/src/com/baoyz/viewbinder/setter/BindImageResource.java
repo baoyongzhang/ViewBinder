@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RUNTIME)
 @Target({METHOD, FIELD})
-public @interface BindVisible {
+public @interface BindImageResource {
 	int value();
-	String setter() default "setVisiblity";
+	String setter() default "setImageResource";
 }

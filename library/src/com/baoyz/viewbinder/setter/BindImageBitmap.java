@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RUNTIME)
 @Target({METHOD, FIELD})
-public @interface BindVisible {
+public @interface BindImageBitmap {
 	int value();
-	String setter() default "setVisiblity";
+	String setter() default "setImageBitmap";
 }

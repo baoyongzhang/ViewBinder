@@ -2,6 +2,8 @@ package com.baoyz.viewbinder;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import android.content.Context;
 import android.net.Uri;
@@ -14,8 +16,9 @@ import com.squareup.picasso.Picasso;
 
 /**
  * 
- * @author baoboy
- * @date 2014年6月24日上午2:03:50
+ * @author baoyz
+ * @date 2014-7-4
+ * 
  * @param <T>
  */
 public class DefaultViewBinder<T> extends ViewBinder<T> {
@@ -27,19 +30,41 @@ public class DefaultViewBinder<T> extends ViewBinder<T> {
 	}
 
 	@Override
-	public void setViewValue(View view, Field field, Object bean) {
-		if (view == null || field == null || bean == null) {
+	public void setViewValue(BindInfo info, T bean) {
+		if (info == null || bean == null) {
 			return;
 		}
+		if (info.isSetter()) {
+			try {
+				Object bindValue = info.getBindValue(bean);
+				// info.getView().getClass()
+				// .getMethod(info.getSetter(), bindValue.getClass())
+				// .invoke(info.getView(), bindValue);
+				Method method = ReflectUtil.findMethod(info.getView()
+						.getClass(), info.getSetter(), info.getBindParamType());
+				method.invoke(info.getView(), bindValue);
+			} catch (IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		} else {
+			bindViewValue(info, bean);
+		}
+	}
+
+	private void bindViewValue(BindInfo info, Object bean) {
+		if (info == null) {
+			return;
+		}
+		View view = info.getView();
 		try {
-			field.setAccessible(true);
 			if (view instanceof CheckBox) {
-				((CheckBox) view).setChecked(field.getBoolean(bean));
+				((CheckBox) view).setChecked((boolean) info.getBindValue(bean));
 			} else if (view instanceof TextView) {
-				((TextView) view).setText(field.get(bean).toString());
+				((TextView) view).setText(info.getBindValue(bean).toString());
 			} else if (view instanceof ImageView) {
 				ImageView iv = (ImageView) view;
-				handleImageView(iv, field.get(bean));
+				handleImageView(iv, info.getBindValue(bean));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,10 +106,13 @@ public class DefaultViewBinder<T> extends ViewBinder<T> {
 		// field
 		Field[] fields = bean.getClass().getDeclaredFields();
 		for (Field field : fields) {
-			setViewValue(viewFinder.findView(field, view), field, bean);
+			setViewValue(viewFinder.findView(field, view), bean);
 		}
 		// method
-		bean.getClass().getMethods();
+		Method[] methods = bean.getClass().getMethods();
+		for (Method method : methods) {
+			setViewValue(viewFinder.findView(method, view), bean);
+		}
 	}
 
 }

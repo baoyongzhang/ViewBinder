@@ -20,4 +20,8 @@ public class MainActivity extends Activity {
 	public void onContactList(View v) {
 		startActivity(new Intent(this, ContactActivity.class));
 	}
+
+	public void onSetterSample(View v) {
+		startActivity(new Intent(this, SetterSampleActivity.class));
+	}
 }

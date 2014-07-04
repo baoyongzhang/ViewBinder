@@ -14,22 +14,28 @@ import android.view.ViewGroup;
  * 
  * @date 2014-6-9 ÏÂÎç6:37:32
  */
-public abstract class BaseCursorAdapter<T extends ICursorBean> extends
+public class SimpleCursorAdapter<T extends ICursorBean> extends
 		CursorAdapter {
 
 	private Context mContext;
 	private Class<T> mBeanClass;
 	private T mBean;
 	private AdapterHandler<T> mAdapterHandler;
+	private int mViewId;
 
-	public BaseCursorAdapter(Context context, Class<T> beanClass) {
-		this(context, null, beanClass);
+	public SimpleCursorAdapter(Context context, Class<T> beanClass) {
+		this(context, null, beanClass, 0);
 	}
 
-	public BaseCursorAdapter(Context context, Cursor c, Class<T> beanClass) {
+	public SimpleCursorAdapter(Context context, Class<T> beanClass, int viewId) {
+		this(context, null, beanClass, viewId);
+	}
+
+	public SimpleCursorAdapter(Context context, Cursor c, Class<T> beanClass, int viewId) {
 		super(context, c, true);
 		mContext = context;
 		mBeanClass = beanClass;
+		mViewId = viewId;
 		try {
 			mBean = mBeanClass.newInstance();
 		} catch (InstantiationException e) {
@@ -58,6 +64,8 @@ public abstract class BaseCursorAdapter<T extends ICursorBean> extends
 		}
 	}
 
-	protected abstract int getViewId();
+	protected int getViewId(){
+		return mViewId;
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.baoyz.viewbinder.setter;
 
 import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
@@ -9,12 +10,13 @@ import java.lang.annotation.Target;
 /**
  * 
  * @author baoyz
- * 
- * @createby 2014-7-3
+ * @date 2014-7-4
+ *
  */
 @Retention(RUNTIME)
-@Target(FIELD)
+@Target({METHOD, FIELD})
 public @interface BindSetter {
 	int value();
-	String name();
+	String setter();
+	Class<Object> params() default Object.class;
 }

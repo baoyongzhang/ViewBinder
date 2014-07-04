@@ -13,7 +13,6 @@ public class ListBean implements Serializable {
 
 	@BindView(R.id.tv_name)
 	private String name;
-	@BindView(R.id.iv_avatar)
 	private String avatar;
 	@BindView(R.id.tv_description)
 	private String description;
@@ -33,6 +32,7 @@ public class ListBean implements Serializable {
 		this.name = name;
 	}
 
+	@BindView(R.id.iv_avatar)
 	public String getAvatar() {
 		return avatar;
 	}
