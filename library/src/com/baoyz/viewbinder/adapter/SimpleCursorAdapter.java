@@ -45,6 +45,17 @@ public class SimpleCursorAdapter<T extends ICursorBean> extends
 		}
 		mAdapterHandler = AdapterHandler.getDefault(context);
 	}
+	
+	public T getItemModel(int position){
+		T bean = null;
+		try {
+			bean = mBeanClass.newInstance();
+			bean.loadFromCursor((Cursor) getItem(position));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bean;
+	}
 
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {

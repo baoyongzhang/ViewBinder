@@ -17,5 +17,5 @@ import java.lang.annotation.Target;
 @Target({METHOD, FIELD})
 public @interface BindVisible {
 	int value();
-	String setter() default "setVisiblity";
+	String setter() default "setVisibility";
 }
