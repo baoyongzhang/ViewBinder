@@ -60,7 +60,7 @@ public class DefaultViewFinder extends ViewFinder {
 					info.setView(findView);
 					info.setSetter((String) clazz.getMethod("setter")
 							.invoke(an));
-					return info;
+					return info; 
 				} catch (IllegalAccessException | IllegalArgumentException
 						| InvocationTargetException | NoSuchMethodException e) {
 					e.printStackTrace();

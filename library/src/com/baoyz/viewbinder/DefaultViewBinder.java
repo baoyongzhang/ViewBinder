@@ -64,7 +64,7 @@ public class DefaultViewBinder<T> extends ViewBinder<T> {
 				handleImageView(iv, info.getBindValue(bean));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 

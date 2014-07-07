@@ -14,10 +14,15 @@ import android.view.View;
  */
 public class BindInfo {
 
+	/* one */
 	private View view;
+	
+	/* two */
 	private boolean isField;
 	private Method method;
 	private Field field;
+	
+	/* three  */
 	private boolean isSetter;
 	private String setter;
 	private Method bindMethod;
