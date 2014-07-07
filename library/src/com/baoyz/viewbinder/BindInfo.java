@@ -20,6 +20,7 @@ public class BindInfo {
 	private Field field;
 	private boolean isSetter;
 	private String setter;
+	private Method bindMethod;
 
 	public BindInfo(View view, boolean isSetter) {
 		super();
@@ -96,6 +97,14 @@ public class BindInfo {
 		return "BindInfo [view=" + view + ", isField=" + isField + ", method="
 				+ method + ", field=" + field + ", isSetter=" + isSetter
 				+ ", setter=" + setter + "]";
+	}
+
+	public Method getBindMethod() {
+		if (bindMethod == null) {
+			bindMethod = ReflectUtil.findMethod(view.getClass(), setter,
+					getBindParamType());
+		}
+		return bindMethod;
 	}
 
 }

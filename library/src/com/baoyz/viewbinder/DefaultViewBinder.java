@@ -40,11 +40,8 @@ public class DefaultViewBinder<T> extends ViewBinder<T> {
 				// info.getView().getClass()
 				// .getMethod(info.getSetter(), bindValue.getClass())
 				// .invoke(info.getView(), bindValue);
-				Method method = ReflectUtil.findMethod(info.getView()
-						.getClass(), info.getSetter(), info.getBindParamType());
-				method.invoke(info.getView(), bindValue);
-			} catch (IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException e) {
+				info.getBindMethod().invoke(info.getView(), bindValue);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {

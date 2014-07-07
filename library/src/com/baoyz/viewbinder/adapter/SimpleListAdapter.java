@@ -16,8 +16,8 @@ import android.widget.BaseAdapter;
  */
 public class SimpleListAdapter<T> extends BaseAdapter {
 
-	private List<T> mList;
-	private Context mContext;
+	protected List<T> mList;
+	protected Context mContext;
 	private AdapterHandler<T> mAdapterHandler;
 	private int mViewId;
 
