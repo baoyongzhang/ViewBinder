@@ -1,7 +1,5 @@
 package com.baoyz.viewbinder;
 
-import java.lang.reflect.Field;
-
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;

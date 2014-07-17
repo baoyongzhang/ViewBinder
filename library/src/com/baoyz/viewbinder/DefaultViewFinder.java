@@ -24,10 +24,11 @@ public class DefaultViewFinder extends ViewFinder {
 		BindInfo info = null;
 
 		if (obj.isAnnotationPresent(BindView.class)) {
-			View findView = view.findViewById(((BindView) obj
-					.getAnnotation(BindView.class)).value());
+			BindView bindView = (BindView) obj
+					.getAnnotation(BindView.class);
+			View findView = view.findViewById(bindView.value());
 			if (findView != null) {
-				info = new BindInfo(findView, false);
+				info = new BindInfo(bindView, findView);
 			}
 		} else {
 			info = findSetter(obj, view);
@@ -50,8 +51,8 @@ public class DefaultViewFinder extends ViewFinder {
 		for (Class<? extends Annotation> clazz : ViewFinder.SETTERS) {
 			if (obj.isAnnotationPresent(clazz)) {
 				try {
-					BindInfo info = new BindInfo(view, true);
 					Annotation an = obj.getAnnotation(clazz);
+					BindInfo info = new BindInfo(an, view);
 					View findView = view.findViewById((int) clazz.getMethod(
 							"value").invoke(an));
 					if (findView == null) {

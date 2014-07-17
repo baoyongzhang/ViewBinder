@@ -2,7 +2,6 @@ package com.baoyz.viewbinder;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import android.content.Context;
@@ -61,23 +60,27 @@ public class DefaultViewBinder<T> extends ViewBinder<T> {
 				((TextView) view).setText(info.getBindValue(bean).toString());
 			} else if (view instanceof ImageView) {
 				ImageView iv = (ImageView) view;
-				handleImageView(iv, info.getBindValue(bean));
+				handleImageView(iv, info, bean);
 			}
 		} catch (Exception e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
 	}
 
-	private void handleImageView(ImageView iv, Object obj) {
+	private void handleImageView(ImageView iv, BindInfo info, Object bean) {
+		Object obj = info.getBindValue(bean);
 		if (obj == null) {
 			return;
 		}
 		Picasso.with(mContext).cancelRequest(iv);
+		int defaultImageId = info.getBindViewAnnotation().defaultImageId();
 		if (obj instanceof Integer) {
-			Picasso.with(mContext).load((Integer) obj).into(iv);
+			Picasso.with(mContext).load((Integer) obj)
+					.placeholder(defaultImageId).error(defaultImageId).into(iv);
 		} else {
 			Uri uri = convertUri(obj);
-			Picasso.with(mContext).load(uri).into(iv);
+			Picasso.with(mContext).load(uri).placeholder(defaultImageId)
+					.error(defaultImageId).into(iv);
 		}
 	}
 
