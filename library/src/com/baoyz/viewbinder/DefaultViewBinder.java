@@ -61,37 +61,12 @@ public class DefaultViewBinder<T> extends ViewBinder<T> {
 				((TextView) view).setText(info.getBindValue(bean).toString());
 			} else if (view instanceof ImageView) {
 				ImageView iv = (ImageView) view;
-				handleImageView(iv, info.getBindValue(bean));
+				ViewBinder.getImageHandler()
+						.handle(iv, info.getBindValue(bean));
 			}
 		} catch (Exception e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
-	}
-
-	private void handleImageView(ImageView iv, Object obj) {
-		if (obj == null) {
-			return;
-		}
-		Picasso.with(mContext).cancelRequest(iv);
-		if (obj instanceof Integer) {
-			Picasso.with(mContext).load((Integer) obj).into(iv);
-		} else {
-			Uri uri = convertUri(obj);
-			Picasso.with(mContext).load(uri).into(iv);
-		}
-	}
-
-	private Uri convertUri(Object obj) {
-		if (obj != null) {
-			if (obj instanceof File) {
-				return Uri.fromFile((File) obj);
-			}
-			if (obj instanceof Uri) {
-				return (Uri) obj;
-			}
-			return Uri.parse(obj.toString());
-		}
-		return null;
 	}
 
 	@Override

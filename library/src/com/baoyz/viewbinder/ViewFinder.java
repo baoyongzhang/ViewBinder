@@ -12,8 +12,8 @@ import com.baoyz.viewbinder.setter.BindChecked;
 import com.baoyz.viewbinder.setter.BindImageBitmap;
 import com.baoyz.viewbinder.setter.BindImageDrawable;
 import com.baoyz.viewbinder.setter.BindImageResource;
-import com.baoyz.viewbinder.setter.BindSelected;
 import com.baoyz.viewbinder.setter.BindSetter;
+import com.baoyz.viewbinder.setter.BindSelected;
 import com.baoyz.viewbinder.setter.BindText;
 import com.baoyz.viewbinder.setter.BindVisible;
 
@@ -23,7 +23,8 @@ import android.view.View;
 /**
  * 
  * @author baoyz
- * @date 2014年6月24日上午2:04:09
+ * @date 2014-6-24
+ *
  */
 public abstract class ViewFinder {
 	

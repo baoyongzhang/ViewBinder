@@ -1,6 +1,7 @@
 package com.baoyz.viewbinder;
 
-import java.lang.reflect.Field;
+import com.baoyz.viewbinder.handler.ImageHandler;
+import com.baoyz.viewbinder.handler.PicassoImageHandler;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,12 +11,19 @@ import android.view.View;
 /**
  * 
  * @author baoyz
- * @date 2014年6月24日上午2:04:01
+ * @date 2014-6-24
+ * 
  * @param <T>
  */
 public abstract class ViewBinder<T> {
 
 	private static ViewBinder instance;
+	private static ImageHandler imageHandler;
+
+	static {
+		// default setting
+		imageHandler = new PicassoImageHandler();
+	}
 
 	public abstract void setViewValue(BindInfo info, T bean);
 
@@ -42,5 +50,13 @@ public abstract class ViewBinder<T> {
 
 	public static void bind(Fragment f, Object bean) {
 		bind(f.getView(), bean);
+	}
+
+	public static void setImageHandler(ImageHandler handler) {
+		imageHandler = handler;
+	}
+
+	public static ImageHandler getImageHandler() {
+		return imageHandler;
 	}
 }
