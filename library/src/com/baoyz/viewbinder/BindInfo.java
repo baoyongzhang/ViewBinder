@@ -1,5 +1,6 @@
 package com.baoyz.viewbinder;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,21 +17,23 @@ public class BindInfo {
 
 	/* one */
 	private View view;
-	
+
 	/* two */
 	private boolean isField;
 	private Method method;
 	private Field field;
-	
-	/* three  */
+
+	/* three */
+	private Annotation annotation;
 	private boolean isSetter;
 	private String setter;
 	private Method bindMethod;
 
-	public BindInfo(View view, boolean isSetter) {
+	public BindInfo(Annotation annotation, View view) {
 		super();
+		this.annotation = annotation;
 		this.view = view;
-		this.isSetter = isSetter;
+		this.isSetter = !(annotation instanceof BindView);
 	}
 
 	public Field getField() {
@@ -110,6 +113,18 @@ public class BindInfo {
 					getBindParamType());
 		}
 		return bindMethod;
+	}
+
+	public Annotation getAnnotation() {
+		return annotation;
+	}
+
+	public void setAnnotation(Annotation annotation) {
+		this.annotation = annotation;
+	}
+	
+	public BindView getBindViewAnnotation(){
+		return (BindView) this.annotation;
 	}
 
 }

@@ -1,12 +1,12 @@
 package com.baoyz.viewbinder;
 
-import com.baoyz.viewbinder.handler.ImageHandler;
-import com.baoyz.viewbinder.handler.PicassoImageHandler;
-
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.view.View;
+
+import com.baoyz.viewbinder.handler.ImageHandler;
+import com.baoyz.viewbinder.handler.PicassoImageHandler;
 
 /**
  * 
