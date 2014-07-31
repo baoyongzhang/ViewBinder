@@ -1,6 +1,5 @@
 package com.baoyz.viewbinder.adapter;
 
-
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
@@ -14,8 +13,7 @@ import android.view.ViewGroup;
  * 
  * @date 2014-6-9 ÏÂÎç6:37:32
  */
-public class SimpleCursorAdapter<T extends ICursorBean> extends
-		CursorAdapter {
+public class SimpleCursorAdapter<T extends ICursorBean> extends CursorAdapter {
 
 	private Context mContext;
 	private Class<T> mBeanClass;
@@ -31,7 +29,8 @@ public class SimpleCursorAdapter<T extends ICursorBean> extends
 		this(context, null, beanClass, viewId);
 	}
 
-	public SimpleCursorAdapter(Context context, Cursor c, Class<T> beanClass, int viewId) {
+	public SimpleCursorAdapter(Context context, Cursor c, Class<T> beanClass,
+			int viewId) {
 		super(context, c, true);
 		mContext = context;
 		mBeanClass = beanClass;
@@ -45,8 +44,8 @@ public class SimpleCursorAdapter<T extends ICursorBean> extends
 		}
 		mAdapterHandler = AdapterHandler.getDefault(context);
 	}
-	
-	public T getItemModel(int position){
+
+	public T getItemModel(int position) {
 		T bean = null;
 		try {
 			bean = mBeanClass.newInstance();
@@ -61,7 +60,12 @@ public class SimpleCursorAdapter<T extends ICursorBean> extends
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
 		View view = View.inflate(mContext, getViewId(), null);
 		mAdapterHandler.createViewHolder(mBean, view);
+		newViewFinish(view);
 		return view;
+	}
+
+	public void newViewFinish(View view) {
+
 	}
 
 	@Override
@@ -70,12 +74,21 @@ public class SimpleCursorAdapter<T extends ICursorBean> extends
 			T bean = mBeanClass.newInstance();
 			bean.loadFromCursor(cursor);
 			mAdapterHandler.bindView(view, bean);
+			bindViewFinish(view, bean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	protected int getViewId(){
+	public void bindViewFinish(View view, T bean) {
+
+	}
+
+	public View getViewFromHolder(View view, int viewId) {
+		return mAdapterHandler.getViewFromHolder(view, viewId);
+	}
+
+	protected int getViewId() {
 		return mViewId;
 	}
 

@@ -1,6 +1,5 @@
 package com.baoyz.viewbinder.adapter;
 
-
 import android.content.Context;
 import android.view.View;
 
@@ -17,6 +16,8 @@ public abstract class AdapterHandler<T> {
 	public abstract void createViewHolder(T bean, View view);
 
 	public abstract void bindView(View view, T bean);
+
+	public abstract View getViewFromHolder(View view, int viewId);
 
 	public static <T> AdapterHandler<T> getDefault(Context context) {
 		if (instance == null) {

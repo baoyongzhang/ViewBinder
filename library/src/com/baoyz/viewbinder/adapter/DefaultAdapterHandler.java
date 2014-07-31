@@ -48,7 +48,7 @@ public class DefaultAdapterHandler<T> extends AdapterHandler<T> {
 				viewHolder.add(info);
 			}
 		}
-		
+
 		Method[] methods = bean.getClass().getMethods();
 		for (Method method : methods) {
 			BindInfo info = mViewFinder.findView(method, view);
@@ -72,6 +72,17 @@ public class DefaultAdapterHandler<T> extends AdapterHandler<T> {
 			mViewBinder.setViewValue(info, bean);
 		}
 
+	}
+
+	@Override
+	public View getViewFromHolder(View view, int viewId) {
+		List<BindInfo> list = mHolderMap.get(view);
+		for (BindInfo info : list) {
+			if (info.getView().getId() == viewId) {
+				return info.getView();
+			}
+		}
+		return null;
 	}
 
 }
